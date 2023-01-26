@@ -36,11 +36,12 @@ services:
     depends_on:
       - rabbitmq
       - auth
+      # - presence
     volumes:
       - .:/usr/src/app # any change to base folder should be reflected
       - /usr/src/app/node_modules
     command: npm run start:dev api
-
+    
   postgres:
     image: postgres
     env_file:
