@@ -6,6 +6,8 @@ export class AppController {
   constructor(
     @Inject('AUTH_SERVICE')
     private readonly authService: ClientProxy,
+    @Inject('PRESENCE_SERVICE')
+    private readonly presenceSerice: ClientProxy,
   ) {}
 
   @Get()
@@ -16,5 +18,10 @@ export class AppController {
   @Post()
   async createUser() {
     return this.authService.send({ cmd: 'save-user' }, {});
+  }
+
+  @Get('/presence')
+  async getPresence() {
+    return this.presenceSerice.send({ cmd: 'get-presence' }, {});
   }
 }
